@@ -9,6 +9,6 @@ public class Handler {
     @GetMapping("/**")
     public ResponseEntity<String> print() {
 
-        return ResponseEntity.ok("aaaa");
+        return ResponseEntity.ok("Hello World");
     }
 }
