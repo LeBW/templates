@@ -17,7 +17,7 @@ RUN cd ./function && mvn clean package
 
 FROM openfaas/of-watchdog:0.7.6 as watchdog
 
-FROM openjdk:8u212-jdk-alpine as ship
+FROM registry.cn-shanghai.aliyuncs.com/libw/java8-with-skywalking-agent as ship
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
@@ -28,7 +28,7 @@ COPY --from=builder /home/app/function/target/java-tmp-0.0.1-SNAPSHOT.jar ./java
 
 ENV upstream_url="http://127.0.0.1:8082"
 ENV mode="http"
-ENV fprocess="java -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
+ENV fprocess="java -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -javaagent /skywalking-agent/skywalking-agent.jar java-tmp-0.0.1-SNAPSHOT.jar"
 
 EXPOSE 8080
 
