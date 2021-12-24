@@ -28,7 +28,7 @@ COPY --from=builder /home/app/function/target/java-tmp-0.0.1-SNAPSHOT.jar ./java
 
 ENV upstream_url="http://127.0.0.1:8082"
 ENV mode="http"
-ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dcollector.backend_service=skywalking-oap.skywalking:11800 -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
+ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap.skywalking:11800 -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
 
 
 EXPOSE 8080
