@@ -19,6 +19,8 @@ FROM openfaas/of-watchdog:0.7.6 as watchdog
 
 FROM registry.cn-shanghai.aliyuncs.com/libw/java8-with-skywalking-agent as ship
 
+ARG service_name
+
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
@@ -28,7 +30,10 @@ COPY --from=builder /home/app/function/target/java-tmp-0.0.1-SNAPSHOT.jar ./java
 
 ENV upstream_url="http://127.0.0.1:8082"
 ENV mode="http"
-ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap.skywalking:11800 -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
+
+ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=skywalking-oap.skywalking:11800
+
+ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=$service_name -Dskywalking.collector.backend_service=$SW_AGENT_COLLECTOR_BACKEND_SERVICES -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
 
 
 EXPOSE 8080
