@@ -33,7 +33,7 @@ ENV mode="http"
 
 ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=skywalking-oap.skywalking:11800
 
-ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=$service_name -Dskywalking.collector.backend_service=$SW_AGENT_COLLECTOR_BACKEND_SERVICES -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
+ENV fprocess="java -javaagent:/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=${service_name} -Dskywalking.collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES} -jar -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap java-tmp-0.0.1-SNAPSHOT.jar"
 
 
 EXPOSE 8080
