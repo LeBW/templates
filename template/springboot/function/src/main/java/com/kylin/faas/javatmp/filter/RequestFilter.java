@@ -27,7 +27,6 @@ public class RequestFilter implements Filter {
     }
 
     @Override
-    @Trace(operationName = "requestWrapperFilter")
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
