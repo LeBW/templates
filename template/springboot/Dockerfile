@@ -5,6 +5,7 @@ RUN apk --no-cache add curl \
     && curl -sSfL https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -o apache-maven-3.6.3-bin.tar.gz \
     && tar xzvf apache-maven-3.6.3-bin.tar.gz \
     && rm -rf apache-maven-3.6.3-bin.tar.gz
+COPY ./settings.xml /opt/apache-maven-3.6.3/conf/settings.xml
 
 ENV MAVEN_HOME=/opt/apache-maven-3.6.3
 ENV PATH=$PATH:$MAVEN_HOME/bin
