@@ -1,4 +1,4 @@
-package com.kylin.faas.javatmp.interceptor;
+package com.faas.javatmp.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,8 +1,6 @@
-package com.kylin.faas.javatmp.config;
+package com.faas.javatmp.config;
 
-import com.kylin.faas.javatmp.interceptor.RequestInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import com.faas.javatmp.interceptor.RequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
